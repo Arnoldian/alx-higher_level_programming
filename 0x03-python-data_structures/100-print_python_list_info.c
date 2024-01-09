@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <Python.h>
 
+void print_python_list_info(PyObject *p);
+
 /**
  * print_python_list_info - prints basic information about py lists
  * @p: PyObject list
+ * Return: no return statement
  */
 
 void print_python_list_info(PyObject *p)
