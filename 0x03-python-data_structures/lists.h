@@ -1,6 +1,8 @@
 #ifndef _LISTS_H_
 #define _LISTS_H_
 
+#include <stdlib.h>
+
 /**
  * struct listint_s - list
  * @n: int

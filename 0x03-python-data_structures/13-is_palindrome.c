@@ -1,6 +1,5 @@
 #include "lists.h"
 
-
 /**
  * reverse_listint - Reverses singly-linked list
  * @head: ptr
