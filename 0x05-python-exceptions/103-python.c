@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <Python.h>
 #include <string.h>
-#include <ctypes.h>
+#include <ctype.h>
 
 /**
  * print_python_bytes - prints bytes info
