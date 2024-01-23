@@ -8,7 +8,10 @@ class MagicClass:
     """MagicClass - a circle class"""
 
     def __init__(self, radius=0):
-        """Method for making use of radius"""
+        """Method for making use of radius
+
+        Arg:
+            radius (float or int): of new MagicClass"""
         self.__radius = 0
         if not isinstance(radius, (int, float)):
             raise TypeError("radius must be a number")
