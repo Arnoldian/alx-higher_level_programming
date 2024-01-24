@@ -1,14 +1,23 @@
 #!/usr/bin/python3
+"""Module for singly-linked list using classes"""
+
 
 class Node:
     """Singly-linked list Node class"""
 
     def __init__(self, data, next_node=None):
+        """
+        Initialize new Node
+        Args:
+            data (int): of new Node
+            next_node (Node): of new Node
+        """
         self.data = data
         self.next_node = next_node
 
     @property
     def data(self):
+        """Method seting data of Node"""
         return (self.__data)
 
     @data.setter
@@ -19,6 +28,7 @@ class Node:
 
     @property
     def next_node(self):
+        """Method setting next node of Node"""
         return (self.__next_node)
 
     @next_node.setter
@@ -32,9 +42,15 @@ class SinglyLinkedList:
     """Singly-linked list class"""
 
     def __init__(self):
+        """Init new SinglyLinkedList"""
         self.__head = None
 
     def sorted_insert(self, value):
+        """
+        Insert new Node to SinglyLinkedList in order
+        Args:
+            value (Node): The new Node to insert.
+        """
         new = Node(value)
         if self.__head is None:
             new.next_node = None
@@ -51,7 +67,7 @@ class SinglyLinkedList:
             holder.next_node = new
 
     def __str__(self):
-
+        """Method for print() of SingllyLinkedList"""
         values = []
         holder = self.__head
 

@@ -1,14 +1,23 @@
 !/usr/bin/python3
+"""Module for Square through class"""
+
 
 class Square:
     """Square - a class"""
 
     def __init__(self, size=0, position=(0, 0)):
+        """
+        initialize new Square
+        Args:
+            size (int): of new Square
+            position (int, int): of new Square
+        """
         self.size = size
         self.position = position
 
     @property
     def size(self):
+        """Method for present size of Square"""
         return (self.__size)
 
     @size.setter
@@ -21,6 +30,7 @@ class Square:
 
     @property
     def position(self):
+        """Method for present position of Square"""
         return (self.__position)
 
     @position.setter
@@ -34,10 +44,11 @@ class Square:
         self.__position = value
 
     def area(self):
+        """Method returns current area of Square"""
         return (self.__size * self.__size)
 
     def my_print(self):
-
+        """ Method for printing Square with # char """
         if self.__size == 0:
             print("")
             return
@@ -49,7 +60,7 @@ class Square:
             print("")
 
     def __str__(self):
-
+        """Method for the print() of Square"""
         if self.__size != 0:
             [print("") for i in range(0, self.__position[1])]
 
