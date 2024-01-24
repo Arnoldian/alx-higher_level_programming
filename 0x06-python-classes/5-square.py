@@ -3,7 +3,7 @@
 
 
 class Square():
-    """Square - a class"""
+    """Square class using methods"""
 
     def __init__(self, size=0):
         """
@@ -15,8 +15,8 @@ class Square():
 
     @property
     def size(self):
-         """
-         size (int): private size
+        """
+        size (int): private size
         Returns:
             Private size
         """
