@@ -1,59 +1,60 @@
 #!/usr/bin/python3
 """
-Module for nqueens
+Module for nqueens backtracking
 """
-import sys
 
 
-def is_safe(board, row, col, N, result):
-    """method for risk"""
-    for i in range(col):
-        if board[row][i] == 1:
-            return False
-    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
-        if board[i][j] == 1:
-            return False
-    for i, j in zip(range(row, N), range(col, -1, -1)):
-        if board[i][j] == 1:
-            return False
-    return True
-
-
-def solve_n_queens(board, col, N, result):
-    """method for solving"""
-    if col >= N:
-        temp = []
-        for i in range(N):
-            for j in range(N):
-                if board[i][j] == 1:
-                    temp.append([i, j])
-        result.append(temp)
-        return False
-    res = False
-    for i in range(N):
-        if is_safe(board, i, col, N, result):
-            board[i][col] = 1
-            res = solve_n_queens(board, col + 1, N, result) or res
-            board[i][col] = 0
-    return res
-
+from sys import argv
 
 if __name__ == "__main__":
-    """method for name"""
-    if len(sys.argv) != 2:
+    a = []
+    if len(argv) != 2:
         print("Usage: nqueens N")
-        sys.exit(1)
-    try:
-        N = int(sys.argv[1])
-    except ValueError:
+        exit(1)
+    if argv[1].isdigit() is False:
         print("N must be a number")
-        sys.exit(1)
-    if N < 4:
+        exit(1)
+    n = int(argv[1])
+    if n < 4:
         print("N must be at least 4")
-        sys.exit(1)
+        exit(1)
 
-    board = [[0 for _ in range(N)] for _ in range(N)]
-    result = []
-    solve_n_queens(board, 0, N, result)
-    for res in result:
-        print(res)
+    # initialize the answer list
+    for i in range(n):
+        a.append([i, None])
+
+    def already_exists(y):
+        """method for existance checking"""
+        for x in range(n):
+            if y == a[x][1]:
+                return True
+        return False
+
+    def reject(x, y):
+        """method for judgement"""
+        if (already_exists(y)):
+            return False
+        i = 0
+        while(i < x):
+            if abs(a[i][1] - y) == abs(i - x):
+                return False
+            i += 1
+        return True
+
+    def clear_ans(x):
+        """method clears the answers"""
+        for i in range(x, n):
+            a[i][1] = None
+
+    def n_queens(x):
+        """method for recursive backtracking"""
+        for y in range(n):
+            clear_ans(x)
+            if reject(x, y):
+                a[x][1] = y
+                if (x == n - 1):
+                    print(a)
+                else:
+                    n_queens(x + 1)
+
+    n_queens(0)
