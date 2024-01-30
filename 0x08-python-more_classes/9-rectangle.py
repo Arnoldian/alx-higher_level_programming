@@ -23,7 +23,7 @@ class Rectangle:
      @classmethod
     def square(cls, size=0):
         """method for Rectangle instant height==width"""
-        return Rectangle(size, size)
+        return cls(size, size)
 
     def __init__(self, width=0, height=0):
         """method for init/instantiation"""

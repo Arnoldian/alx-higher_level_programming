@@ -1,22 +1,23 @@
-#!/usr/bin/pyhon3
+#!/usr/bin/python3
 """
-Module for N-queens puzzle
+Module for nqueens
 """
 import sys
 
 
-def no_risk(board, row, col, N, result):
-    """method for evaluating risk"""
+def is_safe(board, row, col, N, result):
+    """method for risk"""
     for i in range(col):
         if board[row][i] == 1:
-            return (False)
+            return False
     for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
         if board[i][j] == 1:
-            return (False)
-    for i, j in zip(range(row, N, 1), range(col, -1, -1)):
+            return False
+    for i, j in zip(range(row, N), range(col, -1, -1)):
         if board[i][j] == 1:
-            return (False)
-    return (True)
+            return False
+    return True
+
 
 def solve_n_queens(board, col, N, result):
     """method for solving"""
@@ -34,7 +35,8 @@ def solve_n_queens(board, col, N, result):
             board[i][col] = 1
             res = solve_n_queens(board, col + 1, N, result) or res
             board[i][col] = 0
-    return (res)
+    return res
+
 
 if __name__ == "__main__":
     """method for name"""
