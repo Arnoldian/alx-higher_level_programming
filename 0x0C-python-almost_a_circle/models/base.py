@@ -29,18 +29,18 @@ class Base:
     @classmethod
     def save_to_file(cls, list_objs):
         """Method saves obj in file"""
-        filename = "{}.json".format(cls.__name__)
-        list_dic = []
+        file_name = "{}.json".format(cls.__name__)
+        list_dict = []
 
         if not list_objs:
             pass
         else:
             for i in range(len(list_objs)):
-                list_dic.append(list_objs[i].to_dictionary())
+                list_dict.append(list_objs[i].to_dictionary())
 
-        lists = cls.to_json_string(list_dic)
+        lists = cls.to_json_string(list_dict)
 
-        with open(filename, 'w') as f:
+        with open(file_name, 'w') as f:
             f.write(lists)
 
     @staticmethod
@@ -48,7 +48,7 @@ class Base:
         """Method converts JSON str to dict"""
         if not json_string:
             return []
-        return json.loads(json_string)
+        return (json.loads(json_string))
 
     @classmethod
     def create(cls, **dictionary):
@@ -58,37 +58,37 @@ class Base:
         else:
             new = cls(10)
         new.update(**dictionary)
-        return new
+        return (new)
 
     @classmethod
     def load_from_file(cls):
         """Method for list of instances"""
-        filename = "{}.json".format(cls.__name__)
+        file_name = "{}.json".format(cls.__name__)
 
-        if os.path.exists(filename) is False:
+        if os.path.exists(file_name) is False:
             return []
 
-        with open(filename, 'r') as f:
+        with open(file_name, 'r') as f:
             list_str = f.read()
 
         list_cls = cls.from_json_string(list_str)
-        list_ins = []
+        listin = []
 
         for index in range(len(list_cls)):
-            list_ins.append(cls.create(**list_cls[index]))
+            listin.append(cls.create(**list_cls[index]))
 
-        return (list_ins)
+        return (listin)
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
         """Method saves CSV file"""
-        filename = "{}.csv".format(cls.__name__)
+        file_name = "{}.csv".format(cls.__name__)
 
         if cls.__name__ == "Rectangle":
-            list_dic = [0, 0, 0, 0, 0]
+            list_dict = [0, 0, 0, 0, 0]
             list_keys = ['id', 'width', 'height', 'x', 'y']
         else:
-            list_dic = ['0', '0', '0', '0']
+            list_dict = ['0', '0', '0', '0']
             list_keys = ['id', 'size', 'x', 'y']
 
         matrix = []
@@ -98,22 +98,22 @@ class Base:
         else:
             for obj in list_objs:
                 for kv in range(len(list_keys)):
-                    list_dic[kv] = obj.to_dictionary()[list_keys[kv]]
-                matrix.append(list_dic[:])
+                    list_dict[kv] = obj.to_dictionary()[list_keys[kv]]
+                matrix.append(list_dict[:])
 
-        with open(filename, 'w') as writeFile:
+        with open(file_name, 'w') as writeFile:
             writer = csv.writer(writeFile)
             writer.writerows(matrix)
 
     @classmethod
     def load_from_file_csv(cls):
         """Method loads CSV file"""
-        filename = "{}.csv".format(cls.__name__)
+        file_name = "{}.csv".format(cls.__name__)
 
-        if os.path.exists(filename) is False:
+        if os.path.exists(file_name) is False:
             return []
 
-        with open(filename, 'r') as readFile:
+        with open(file_name, 'r') as readFile:
             reader = csv.reader(readFile)
             csv_list = list(reader)
 
@@ -125,14 +125,14 @@ class Base:
         matrix = []
 
         for csv_elem in csv_list:
-            dict_csv = {}
+            csv_dict = {}
             for kv in enumerate(csv_elem):
-                dict_csv[list_keys[kv[0]]] = int(kv[1])
-            matrix.append(dict_csv)
+                csv_dict[list_keys[kv[0]]] = int(kv[1])
+            matrix.append(csv_dict)
 
-        list_ins = []
+        listin = []
 
         for index in range(len(matrix)):
-            list_ins.append(cls.create(**matrix[index]))
+            listin.append(cls.create(**matrix[index]))
 
-        return (list_ins)
+        return (listin)

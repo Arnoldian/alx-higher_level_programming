@@ -16,10 +16,10 @@ class Square(Rectangle):
         """Method for special str"""
         str_square = "[Square] "
         str_id = "({}) ".format(self.id)
-        str_xy = "{}/{} - ".format(self.x, self.y)
-        str_wh = "{}/{}".format(self.width, self.height)
+        str_x_y = "{}/{} - ".format(self.x, self.y)
+        str_w_h = "{}/{}".format(self.width, self.height)
 
-        return (str_square + str_id + str_xy + str_wh)
+        return (str_square + str_id + str_x_y + str_w_h)
 
     @property
     def size(self):
@@ -34,23 +34,23 @@ class Square(Rectangle):
 
     def __str__(self):
         """Method for special string"""
-        str_rectangle = "[Square] "
+        str_rect = "[Square] "
         str_id = "({}) ".format(self.id)
-        str_xy = "{}/{} - ".format(self.x, self.y)
+        str_x_y = "{}/{} - ".format(self.x, self.y)
         str_size = "{}".format(self.size)
 
-        return (str_rectangle + str_id + str_xy + str_size)
+        return (str_rect + str_id + str_x_y + str_size)
 
     def update(self, *args, **kwargs):
         """Method for update"""
         if args is not None and len(args) is not 0:
-            list_atr = ['id', 'size', 'x', 'y']
+            list_attrs = ['id', 'size', 'x', 'y']
             for i in range(len(args)):
-                if list_atr[i] == 'size':
+                if list_attrs[i] == 'size':
                     setattr(self, 'width', args[i])
                     setattr(self, 'height', args[i])
                 else:
-                    setattr(self, list_atr[i], args[i])
+                    setattr(self, list_attrs[i], args[i])
         else:
             for key, value in kwargs.items():
                 if key == 'size':
@@ -61,13 +61,13 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """Method for dict with attr"""
-        list_atr = ['id', 'size', 'x', 'y']
-        dict_res = {}
+        list_attrs = ['id', 'size', 'x', 'y']
+        res_dict = {}
 
-        for key in list_atr:
+        for key in list_attrs:
             if key == 'size':
-                dict_res[key] = getattr(self, 'width')
+                res_dict[key] = getattr(self, 'width')
             else:
-                dict_res[key] = getattr(self, key)
+                res_dict[key] = getattr(self, key)
 
-        return (dict_res)
+        return (res_dict)

@@ -78,38 +78,38 @@ class Rectangle(Base):
 
     def display(self):
         """ displays a rectangle """
-        rectangle = self.y * "\n"
+        rect = self.y * "\n"
         for i in range(self.height):
-            rectangle += (" " * self.x)
-            rectangle += ("#" * self.width) + "\n"
+            rect += (" " * self.x)
+            rect += ("#" * self.width) + "\n"
 
-        print(rectangle, end='')
+        print(rect, end='')
 
     def __str__(self):
         """Mehtod for special str"""
-        str_rectangle = "[Rectangle] "
+        str_rect = "[Rectangle] "
         str_id = "({}) ".format(self.id)
-        str_xy = "{}/{} - ".format(self.x, self.y)
-        str_wh = "{}/{}".format(self.width, self.height)
+        str_x_y = "{}/{} - ".format(self.x, self.y)
+        str_w_h = "{}/{}".format(self.width, self.height)
 
-        return (str_rectangle + str_id + str_xy + str_wh)
+        return (str_rect + str_id + str_x_y + str_w_h)
 
     def update(self, *args, **kwargs):
         """Method for update"""
         if args is not None and len(args) is not 0:
-            list_atr = ['id', 'width', 'height', 'x', 'y']
+            list_attrs = ['id', 'width', 'height', 'x', 'y']
             for i in range(len(args)):
-                setattr(self, list_atr[i], args[i])
+                setattr(self, list_attrs[i], args[i])
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
     def to_dictionary(self):
         """Method for dict with properties"""
-        list_atr = ['id', 'width', 'height', 'x', 'y']
-        dict_res = {}
+        list_attrs = ['id', 'width', 'height', 'x', 'y']
+        res_dict = {}
 
-        for key in list_atr:
-            dict_res[key] = getattr(self, key)
+        for key in list_attrs:
+            res_dict[key] = getattr(self, key)
 
-        return (dict_res)
+        return (res_dict)
