@@ -6,7 +6,7 @@ const request = require('request');
 // Declaration and assignment
 const url = process.argv[2];
 
-// function request and writes to console
+// Requests and writes to console
 request(url, (error, response, body) => {
   if (error) {
     console.error('Error:', error);
